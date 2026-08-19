@@ -1,0 +1,220 @@
+/* =====================================================================
+   Identidade visual — Painel da Oficina
+   Paleta: piso de oficina (grafite/carvão) + amarelo de sinalização (amber)
+   + azul-óleo como secundária. Placas de veículo como elemento-assinatura.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+    --grafite-950: #171614;
+    --grafite-900: #1e1c19;
+    --grafite-800: #29261f;
+    --grafite-700: #3a362c;
+    --linha: #47422f;
+    --texto: #ede7d9;
+    --texto-fraco: #a89f8a;
+    --amber: #e8a33d;
+    --amber-forte: #f2b354;
+    --oleo: #2f5d62;
+    --oleo-claro: #4d868c;
+    --alerta: #c65a4e;
+    --ok: #6fa96b;
+
+    --fonte-titulo: 'Barlow Condensed', sans-serif;
+    --fonte-corpo: 'Inter', sans-serif;
+    --fonte-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    background:
+        linear-gradient(180deg, var(--grafite-950), var(--grafite-900) 320px);
+    color: var(--texto);
+    font-family: var(--fonte-corpo);
+    line-height: 1.5;
+}
+
+a { color: var(--amber-forte); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+}
+
+h1, h2, h3 {
+    font-family: var(--fonte-titulo);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: 700;
+    margin: 0 0 0.4em;
+}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.4rem; color: var(--amber-forte); }
+h3 { font-size: 1.1rem; color: var(--texto-fraco); }
+
+/* ---------- Layout geral ---------- */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--linha);
+    background: repeating-linear-gradient(
+        135deg, var(--grafite-950) 0 10px, var(--grafite-900) 10px 20px
+    );
+}
+.topbar .marca {
+    font-family: var(--fonte-titulo);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.topbar .marca .risco { color: var(--amber); }
+.topbar nav { display: flex; gap: 18px; align-items: center; font-size: 0.92rem; }
+.topbar nav a { color: var(--texto-fraco); }
+.topbar nav a.ativo, .topbar nav a:hover { color: var(--amber-forte); }
+.topbar .usuario { color: var(--texto-fraco); font-size: 0.85rem; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+
+.grid { display: grid; gap: 16px; }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+.card {
+    background: var(--grafite-800);
+    border: 1px solid var(--linha);
+    border-radius: 6px;
+    padding: 18px 20px;
+}
+.card + .card { margin-top: 16px; }
+
+.stat { text-align: left; }
+.stat .valor { font-family: var(--fonte-mono); font-size: 2rem; font-weight: 700; color: var(--amber-forte); }
+.stat .rotulo { color: var(--texto-fraco); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ---------- Elemento-assinatura: a placa do veículo ---------- */
+.placa {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--fonte-mono);
+    font-weight: 700;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 2px solid #0c0c0c;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.4);
+    min-width: 108px;
+}
+.placa .faixa {
+    width: 100%;
+    background: linear-gradient(90deg, var(--oleo), var(--oleo-claro));
+    color: #eaf4f4;
+    font-family: var(--fonte-corpo);
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    text-align: center;
+    padding: 1px 0;
+    text-transform: uppercase;
+}
+.placa .numero {
+    background: #f4f1e6;
+    color: #171614;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    padding: 4px 10px;
+    width: 100%;
+    text-align: center;
+}
+
+/* ---------- Tabelas ---------- */
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--linha); }
+th { color: var(--texto-fraco); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.04em; }
+tr:hover td { background: rgba(232, 163, 61, 0.05); }
+
+.badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.badge-recebido { background: rgba(232,163,61,0.18); color: var(--amber-forte); }
+.badge-em_diagnostico, .badge-em_servico { background: rgba(79,134,140,0.22); color: var(--oleo-claro); }
+.badge-aguardando_aprovacao, .badge-aguardando_peca { background: rgba(198,90,78,0.15); color: #e79c8f; }
+.badge-pronto { background: rgba(111,169,107,0.18); color: var(--ok); }
+.badge-entregue { background: rgba(168,159,138,0.18); color: var(--texto-fraco); }
+.badge-vencida { background: rgba(198,90,78,0.2); color: var(--alerta); }
+.badge-agendado, .badge-confirmado { background: rgba(79,134,140,0.22); color: var(--oleo-claro); }
+.badge-chegou { background: rgba(111,169,107,0.18); color: var(--ok); }
+.badge-cancelado, .badge-nao_compareceu { background: rgba(168,159,138,0.18); color: var(--texto-fraco); }
+.badge-pendente { background: rgba(232,163,61,0.18); color: var(--amber-forte); }
+.badge-aprovado { background: rgba(111,169,107,0.18); color: var(--ok); }
+.badge-parcialmente_aprovado { background: rgba(79,134,140,0.22); color: var(--oleo-claro); }
+.badge-recusado { background: rgba(198,90,78,0.2); color: var(--alerta); }
+.badge-pausada { background: rgba(198,90,78,0.15); color: #e79c8f; }
+
+/* ---------- Formulários ---------- */
+label { display: block; font-size: 0.82rem; color: var(--texto-fraco); margin: 12px 0 4px; }
+input, select, textarea {
+    width: 100%;
+    background: var(--grafite-900);
+    border: 1px solid var(--linha);
+    border-radius: 4px;
+    padding: 9px 11px;
+    color: var(--texto);
+    font-family: var(--fonte-corpo);
+    font-size: 0.95rem;
+}
+input[name="placa"] { font-family: var(--fonte-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+button, .botao {
+    display: inline-block;
+    background: var(--amber);
+    color: #1c1200;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 18px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    margin-top: 16px;
+}
+button:hover, .botao:hover { background: var(--amber-forte); text-decoration: none; }
+.botao-secundario { background: transparent; color: var(--texto-fraco); border: 1px solid var(--linha); }
+
+.busca { display: flex; gap: 10px; margin-bottom: 18px; }
+.busca input { flex: 1; }
+.busca button { margin-top: 0; }
+
+.aviso { padding: 12px 14px; border-radius: 4px; margin-bottom: 16px; font-size: 0.9rem; }
+.aviso-erro { background: rgba(198,90,78,0.15); border: 1px solid var(--alerta); color: #f3c6c0; }
+.aviso-ok { background: rgba(111,169,107,0.15); border: 1px solid var(--ok); color: #cfe8cc; }
+
+.tela-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.caixa-login {
+    width: 100%;
+    max-width: 360px;
+    padding: 32px;
+}
+.caixa-login h1 { text-align: center; }
+.caixa-login .subtitulo { text-align: center; color: var(--texto-fraco); margin-bottom: 20px; font-size: 0.88rem; }
+
+.vazio { color: var(--texto-fraco); font-style: italic; padding: 20px 0; }
+
+footer.rodape { text-align: center; color: var(--texto-fraco); font-size: 0.78rem; padding: 30px 0 10px; }
