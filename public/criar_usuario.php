@@ -1,5 +1,7 @@
-cat > public/criar_usuario.php << 'EOF'
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 require dirname(__DIR__) . '/bootstrap.php';
 
 try {
@@ -27,4 +29,3 @@ try {
 } catch (Exception $e) {
     echo "<p style='color:red'>❌ Erro: " . $e->getMessage() . "</p>";
 }
-EOF
